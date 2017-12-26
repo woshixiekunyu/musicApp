@@ -11,6 +11,11 @@ import '@/assets/scss/index.scss'
 import '../static/font/iconfont.css'
 import '../static/font/iconfont.js'
 
+//引入轮播插件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
+import 'swiper/dist/css/swiper.css'
+
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
