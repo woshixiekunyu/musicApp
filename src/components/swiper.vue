@@ -6,8 +6,8 @@
 					<!--<img :src="item.src" alt="" onerror="this.src='/vue/static/img/test1.png'"/>-->
 					<!--{{item}}-->
 					<img :src="item.pic" alt="" />
-					<span>
-						<i>111</i>
+					<span :style="{backgroundColor:item.titleColor}">
+						<i>{{item.typeTitle.substring(0,2)}}</i>
 					</span>
 				</div>
 			</div>
@@ -37,14 +37,17 @@
 		watch:{
 			imgList(){
 				var vm = this;
+				console.log(this.imgList)
 				Vue.nextTick(function(){
 					var mySwiper = new Swiper('.swiper-container', {
-//						autoplay: 3000, //可选选项，自动滑动
-							autoplayDisableOnInteraction : false,//用户操作后不禁止
+						autoplay: 3000, //可选选项，自动滑动
+						autoplayDisableOnInteraction : false,//用户操作后不禁止
 						loop:true, //无线循环
-						loopAdditionalSlides:1, //复制一次 
+						loopAdditionalSlides:2, //复制一次 
 						pagination: '.swiper-pagination', //分页
 						paginationClickable: true,
+//						observer:true,//修改swiper自己或子元素时，自动初始化swiper
+//  					observeParents:true
 					})
 				})
 			}

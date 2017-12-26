@@ -22,7 +22,6 @@
 			return {
 				slideName:'mainslide-left',
 				tabIdx:0,
-//				animateName:'left-in listBox_s',
 				tabList:[
 					{
 						id:0,
@@ -53,24 +52,13 @@
 		directives:{
 			bw(e){
 				e.addEventListener('click',function(evt){
-//					console.log(this)
-//					console.log(evt)
-//					console.log(bw)
 					bw.install(evt,this)
 				})
 			}
 		},
 		methods:{
 			chTab(e,idx,routeName){
-//				console.log(e)
-//				bw.install(e,document.getElementsByClassName('listBox')[idx]);
-//				if(this.tabIdx<idx){
-//					this.animateName = 'left-in listBox_s'
-//				}
 				var dom = document.getElementsByClassName('listBox_s');
-//				var domobj = dom[idx].getBoundingClientRect()
-//				var lastobj = document.getElementsByClassName('listBox')[this.tabIdx].getBoundingClientRect()
-//				var thisobj = document.getElementsByClassName('listBox')[idx].getBoundingClientRect()
 				if(idx-this.tabIdx == 1){
 					dom[this.tabIdx].style.left = '100%';
 					dom[idx].style.left = '10px';
@@ -114,7 +102,6 @@
 
 <style scoped lang="scss">
 	.mainPdWyyList{
-		/*margin-top: 50px;*/
 		.tabMenu{
 			width: 100%;
 			height: 40px;
@@ -123,7 +110,10 @@
 			text-align:center;
 			padding: 0 20px;
 			box-sizing:border-box;
-			position: relative;
+			position: fixed;
+			left: 0;
+			z-index: 10000;
+			background-color: #fff;
 			.listBox{
 				flex: 1;
 				font-size: 14px;
@@ -150,15 +140,13 @@
 						left: -100%;
 					}						
 				}
-				/*.left-in{
-					transition: all 1s forwards;
-				}*/
 			}
 		}
 		.mainwyyslide{
 			width: 100%;
 			position: absolute;
 			left: 0;
+			top: 40px;
 			transition: all .2s linear;
 		}
 		.mainslide-left-enter,

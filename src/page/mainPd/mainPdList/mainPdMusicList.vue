@@ -12,7 +12,7 @@
 		},
 		mounted(){
 			console.log(this.$http)	
-			this.$http.get('http://localhost:3000/personalized/djprogram',{params:{
+			this.$gets('personalized/djprogram',{params:{
 				keywords:'海阔天空'
 			}}).then(res=>{
 				//跨域

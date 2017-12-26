@@ -4,7 +4,7 @@ import Vue from 'vue'
 //import index from '@/page/index'
 import router from './router'
 
-import axios from 'axios'
+import myaxios from './api/index'
 
 import '@/assets/scss/index.scss'
 
@@ -16,7 +16,8 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)
 import 'swiper/dist/css/swiper.css'
 
-Vue.prototype.$http = axios
+Vue.prototype.$gets = myaxios.get
+Vue.prototype.$posts = myaxios.post
 
 Vue.config.productionTip = false
 

@@ -3,23 +3,18 @@
 		<swiper :imgList="imgList"></swiper>
 		<div class="nav">
 			<ul>
-				<li>
-					<span></span>
-					<p>111</p>
-				</li>
-				<li>
-					<span></span>
-					<p>111</p>
-				</li>
-				<li>
-					<span></span>
-					<p>111</p>
-				</li>
-				<li>
-					<span></span>
-					<p>111</p>
+				<li v-for="(item,idx) in navList" :key="item.id">
+					<span @click="">
+						<i :class="item.className"></i>
+					</span>
+					<p>{{item.title}}</p>
 				</li>
 			</ul>
+		</div>
+		<div class="main">
+			<tj-list :type="'music'"></tj-list>
+			<tj-list :type="'alone'"></tj-list>
+			<tj-list :type="'mv'"></tj-list>
 		</div>
 	</div>
 </template>
@@ -30,7 +25,37 @@
 		name:'wyymusic',
 		data(){
 			return {
-               imgList:[]
+               	imgList:[],
+               	navList:[
+               		{
+               			id:0,
+               			title:'私人FM',
+               			className:'iconfont icon-shouyinjishoutingguangboyinle',
+               			rl:false,
+               			routename:'myfm'
+               		},
+               		{
+               			id:1,
+               			title:'每日推荐',
+               			className:'iconfont icon-rili',
+               			rl:false,
+               			routename:'tuijian'
+               		},
+               		{
+               			id:2,
+               			title:'歌单',
+               			className:'iconfont icon-yinle',
+               			rl:false,
+               			routename:'gedan'
+               		},
+               		{
+               			id:3,
+               			title:'排行版',
+               			className:'iconfont icon-paixing',
+               			rl:false,
+               			routename:'rank'
+               		}
+               	]
 			}
 		},
 		computed:{
@@ -39,26 +64,30 @@
 			}
 		},
 		watch:{
-			imgList(){
-			}
+//			imgList(){
+//			}
 		},
 		mounted(){
-			this.$http.get('http://localhost:3000/banner').then(res=>{
-				console.log(res)
+			this.$gets('banner').then(res=>{
 				this.imgList = res.data.banners;
 			})
 
 		},
 		components:{
 			swiper,
+			tjList:r=>require(['@/components/list/tjList'],r)
 		}
 	}
 </script>
 <style scoped lang="scss">
 	.mainwyymusic{
+		/*overflow-y: scroll;*/
+		/*width: 100%;*/
+		/*height: 100%;*/
+		/*padding-top: 40px;*/
 		.nav{
 			width: 100%;
-			height: 5rem;
+			height: 5.4rem;
 			border-bottom: 1px solid #eee;
 			ul{
 				padding: 0 5%;
@@ -69,23 +98,40 @@
 				justify-content: space-between;
 				text-align: center;
 				li{
-					width: 2.4rem;
-					/*flex: 1;*/
-					height: 2.4rem;
+					/*width: 2.4rem;*/
+					flex: 1;
+					height: 4.4rem;
 					span{
 						box-sizing: border-box;
 						display: inline-block;
-						width: 100%;
-						height: 100%;
+						width: 2.6rem;
+						height: 2.6rem;
 						border: 1px solid #f00;
 						border-radius: 50%;
+						text-align: center;
+						/*padding-top: 0.7rem;*/
+						i{
+							color: #f00;
+							font-size: 1rem;
+							line-height: 2.6rem;
+						}
+						&:active{
+							background-color: #f00;
+						}
+						&:active i{
+							color: #fff;
+						}
 					}
 					p{
-						font-size: 0.75rem;
+						font-size: 0.875rem;
+						line-height: 2rem;
 					}
 					
 				}
 			}
+		}
+		.main{
+			
 		}
 	}
 </style>

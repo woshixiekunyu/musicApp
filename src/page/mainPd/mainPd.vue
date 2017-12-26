@@ -57,10 +57,17 @@
 				this.$router.push({
 					name:routeName
 				})
-			}
+			},
 		},
 		mounted(){
 			console.log(this.$route)
+			this.tabList.forEach((item,idx)=>{
+				if(this.$route.name == item.routeName){
+					this.tabIdx = idx
+				}
+			})
+		},
+		attached(){
 			this.tabList.forEach((item,idx)=>{
 				if(this.$route.name == item.routeName){
 					this.tabIdx = idx
@@ -73,10 +80,11 @@
 <style scoped lang="scss">
 	.pageTop{
 		width: 100%;
-		position: fixed;
-		left: 0;
-		top: 0;
+		/*position: fixed;*/
 		.tabMenu{
+			position: fixed;
+			left: 0;
+			top: 0;
 			width: 100%;
 			height: 50px;
 			line-height: 50px;		
@@ -84,6 +92,7 @@
 			box-sizing: border-box;
 			padding: 0 10px;
 			display: flex;
+			z-index: 10000;
 			.menu{
 				width: 20%;
 				font-size: 24px;
@@ -115,8 +124,8 @@
 		}
 		.pageTabAnimate{
 			position: absolute;
-			/*left: 0;*/
-			/*top: 0;*/
+			left: 0;
+			top: 50px;
 			width:100%;
 	  		transition: all .2s linear;
 		}
